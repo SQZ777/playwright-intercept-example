@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@playwright/test": "^1.46.1",
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "dev": "node ./server/server.js"
+  }
+}
