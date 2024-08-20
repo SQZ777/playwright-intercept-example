@@ -1,4 +1,4 @@
-const { test, expect, defineConfig } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
 test.describe('test with local and no change', () => {
     test('test intercept request for no change', async ({ page }) => {
