@@ -5,7 +5,25 @@ test.describe('test with local and no change', () => {
         await page.route('**/api/data', (route, request) => {
             console.log('Intercepted request:', request.postData());
             const postData = JSON.parse(request.postData());
-            expect(postData.location).toBe('Asia/Taipei')
+            expect(postData.location).toBe('Asia/Taipei');
+            route.continue();
+        });
+    
+        await page.goto('http://localhost:3000');
+        await page.click('#sendRequest');
+    
+        // 讓時間留給網頁處理請求
+        await page.waitForTimeout(1000);
+    });
+});
+
+test.describe('test with franch', () => {
+    test.use({ timezoneId: 'Europe/Paris' });
+    test('test intercept request for no change', async ({ page }) => {
+        await page.route('**/api/data', (route, request) => {
+            console.log('Intercepted request:', request.postData());
+            const postData = JSON.parse(request.postData());
+            expect(postData.location).toBe('Europe/Paris');
             route.continue();
         });
     
